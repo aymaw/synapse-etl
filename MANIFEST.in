@@ -1,0 +1,3 @@
+recursive-include docs *.md *.svg *.mmd *.html *.png
+recursive-include examples *.json *.csv
+include Makefile SECURITY.md CONTRIBUTING.md CHANGELOG.md

@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+*.sqlite*
+*.db
+*.egg-info/
+build/
+dist/
+.coverage
+.DS_Store
+.runs/
