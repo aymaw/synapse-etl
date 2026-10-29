@@ -35,11 +35,20 @@ class ProviderTests(unittest.TestCase):
                 ChatPlanner(url, "test")
 
     def test_no_model_defaults_or_ambient_credentials(self):
-        with patch.dict(os.environ, {}, clear=True), self.assertRaises(ProviderError):
+        # Preserve OS configuration: Windows TLS initialization requires SystemRoot.
+        model_keys = {"MODEL_BASE_URL", "MODEL_NAME", "MODEL_API_KEY"}
+        base_environment = {
+            key: value for key, value in os.environ.items() if key not in model_keys
+        }
+        with patch.dict(os.environ, base_environment, clear=True), self.assertRaises(ProviderError):
             ChatPlanner.from_env()
         with patch.dict(
             os.environ,
-            {"MODEL_BASE_URL": "http://localhost:11434/v1", "MODEL_NAME": "local-test"},
+            {
+                **base_environment,
+                "MODEL_BASE_URL": "http://localhost:11434/v1",
+                "MODEL_NAME": "local-test",
+            },
             clear=True,
         ):
             self.assertEqual(ChatPlanner.from_env().api_key, "")
