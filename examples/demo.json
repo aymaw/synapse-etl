@@ -1,0 +1,280 @@
+{
+  "project": "SynapseETL",
+  "mode": "synthetic-telemetry",
+  "proposal": {
+    "version": 1,
+    "header_hash": "1ec28cdb9372d384499e55ff5fe7ec4e9729d412e867d1089f9286d74ed549f4",
+    "mappings": [
+      {
+        "source": "reading_key",
+        "target": "event_id",
+        "transform": "text"
+      },
+      {
+        "source": "sensor_key",
+        "target": "device_id",
+        "transform": "text"
+      },
+      {
+        "source": "collected_at",
+        "target": "observed_at",
+        "transform": "iso8601"
+      },
+      {
+        "source": "temp_f",
+        "target": "temperature_c",
+        "transform": "fahrenheit_to_celsius"
+      },
+      {
+        "source": "health",
+        "target": "status",
+        "transform": "status"
+      }
+    ],
+    "origin": "deterministic-header-policy",
+    "issues": [],
+    "fingerprint": "73340ddb44c504c38816f773b0b64ba02105f65c1a20a27b7f3a78c88ea926e2",
+    "evidence": {
+      "headers": [
+        "reading_key",
+        "sensor_key",
+        "collected_at",
+        "temp_f",
+        "health"
+      ],
+      "header_hash": "1ec28cdb9372d384499e55ff5fe7ec4e9729d412e867d1089f9286d74ed549f4",
+      "row_count": 6,
+      "columns": {
+        "reading_key": {
+          "nonempty": 6,
+          "distinct": 5,
+          "examples": [
+            "DEMO-E001",
+            "DEMO-E002",
+            "DEMO-E003"
+          ]
+        },
+        "sensor_key": {
+          "nonempty": 6,
+          "distinct": 5,
+          "examples": [
+            "DEMO-S001",
+            "DEMO-S002",
+            "DEMO-S003"
+          ]
+        },
+        "collected_at": {
+          "nonempty": 6,
+          "distinct": 5,
+          "examples": [
+            "2030-01-01T12:00:00Z",
+            "2030-01-01T12:01:00Z",
+            "2030-01-01T12:02:00Z"
+          ]
+        },
+        "temp_f": {
+          "nonempty": 6,
+          "distinct": 4,
+          "examples": [
+            "68",
+            "77",
+            "not-a-number"
+          ]
+        },
+        "health": {
+          "nonempty": 6,
+          "distinct": 4,
+          "examples": [
+            "healthy",
+            "warn",
+            "ok"
+          ]
+        }
+      }
+    }
+  },
+  "approved_mapping": {
+    "version": 1,
+    "header_hash": "1ec28cdb9372d384499e55ff5fe7ec4e9729d412e867d1089f9286d74ed549f4",
+    "mappings": [
+      {
+        "source": "reading_key",
+        "target": "event_id",
+        "transform": "text"
+      },
+      {
+        "source": "sensor_key",
+        "target": "device_id",
+        "transform": "text"
+      },
+      {
+        "source": "collected_at",
+        "target": "observed_at",
+        "transform": "iso8601"
+      },
+      {
+        "source": "temp_f",
+        "target": "temperature_c",
+        "transform": "fahrenheit_to_celsius"
+      },
+      {
+        "source": "health",
+        "target": "status",
+        "transform": "status"
+      }
+    ],
+    "origin": "deterministic-header-policy",
+    "issues": [],
+    "approval": {
+      "actor": "demo-reviewer",
+      "fingerprint": "73340ddb44c504c38816f773b0b64ba02105f65c1a20a27b7f3a78c88ea926e2"
+    }
+  },
+  "result": {
+    "batch_id": "5fe81d378601aa1889f68427d7dfa93b0bae6849b327ab808e17cac4909a78b3",
+    "source_hash": "9dbaa7b4f95fb2f36f082dd959ea209eb4f9fd82441ea519af09d8283d7b1819",
+    "mapping_hash": "73340ddb44c504c38816f773b0b64ba02105f65c1a20a27b7f3a78c88ea926e2",
+    "rows": 6,
+    "accepted": 3,
+    "duplicates": 1,
+    "quarantined": 2,
+    "outcomes": [
+      {
+        "row": 2,
+        "event_id": "DEMO-E001",
+        "outcome": "accepted"
+      },
+      {
+        "row": 3,
+        "event_id": "DEMO-E002",
+        "outcome": "accepted"
+      },
+      {
+        "row": 4,
+        "event_id": "DEMO-E003",
+        "outcome": "quarantined"
+      },
+      {
+        "row": 5,
+        "event_id": "DEMO-E001",
+        "outcome": "duplicate"
+      },
+      {
+        "row": 6,
+        "event_id": "DEMO-E004",
+        "outcome": "accepted"
+      },
+      {
+        "row": 7,
+        "event_id": "DEMO-E005",
+        "outcome": "quarantined"
+      }
+    ],
+    "errors": [
+      {
+        "row": 4,
+        "errors": [
+          {
+            "field": "temperature_c",
+            "reason": "invalid_fahrenheit_to_celsius"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "errors": [
+          {
+            "field": "observed_at",
+            "reason": "invalid_iso8601"
+          }
+        ]
+      }
+    ],
+    "replayed": false
+  },
+  "replay": {
+    "accepted": 3,
+    "batch_id": "5fe81d378601aa1889f68427d7dfa93b0bae6849b327ab808e17cac4909a78b3",
+    "duplicates": 1,
+    "errors": [
+      {
+        "errors": [
+          {
+            "field": "temperature_c",
+            "reason": "invalid_fahrenheit_to_celsius"
+          }
+        ],
+        "row": 4
+      },
+      {
+        "errors": [
+          {
+            "field": "observed_at",
+            "reason": "invalid_iso8601"
+          }
+        ],
+        "row": 7
+      }
+    ],
+    "mapping_hash": "73340ddb44c504c38816f773b0b64ba02105f65c1a20a27b7f3a78c88ea926e2",
+    "outcomes": [
+      {
+        "event_id": "DEMO-E001",
+        "outcome": "accepted",
+        "row": 2
+      },
+      {
+        "event_id": "DEMO-E002",
+        "outcome": "accepted",
+        "row": 3
+      },
+      {
+        "event_id": "DEMO-E003",
+        "outcome": "quarantined",
+        "row": 4
+      },
+      {
+        "event_id": "DEMO-E001",
+        "outcome": "duplicate",
+        "row": 5
+      },
+      {
+        "event_id": "DEMO-E004",
+        "outcome": "accepted",
+        "row": 6
+      },
+      {
+        "event_id": "DEMO-E005",
+        "outcome": "quarantined",
+        "row": 7
+      }
+    ],
+    "quarantined": 2,
+    "replayed": true,
+    "rows": 6,
+    "source_hash": "9dbaa7b4f95fb2f36f082dd959ea209eb4f9fd82441ea519af09d8283d7b1819"
+  },
+  "events": [
+    {
+      "device_id": "DEMO-S001",
+      "event_id": "DEMO-E001",
+      "observed_at": "2030-01-01T12:00:00Z",
+      "status": "ok",
+      "temperature_c": "20.00"
+    },
+    {
+      "device_id": "DEMO-S002",
+      "event_id": "DEMO-E002",
+      "observed_at": "2030-01-01T12:01:00Z",
+      "status": "warning",
+      "temperature_c": "25.00"
+    },
+    {
+      "device_id": "DEMO-S004",
+      "event_id": "DEMO-E004",
+      "observed_at": "2030-01-01T12:04:00Z",
+      "status": "offline",
+      "temperature_c": "30.00"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "header_hash": "1ec28cdb9372d384499e55ff5fe7ec4e9729d412e867d1089f9286d74ed549f4",
+  "mappings": [
+    {
+      "source": "reading_key",
+      "target": "event_id",
+      "transform": "text"
+    },
+    {
+      "source": "sensor_key",
+      "target": "device_id",
+      "transform": "text"
+    },
+    {
+      "source": "collected_at",
+      "target": "observed_at",
+      "transform": "iso8601"
+    },
+    {
+      "source": "temp_f",
+      "target": "temperature_c",
+      "transform": "fahrenheit_to_celsius"
+    },
+    {
+      "source": "health",
+      "target": "status",
+      "transform": "status"
+    }
+  ],
+  "origin": "deterministic-header-policy",
+  "issues": [],
+  "approval": {
+    "actor": "demo-reviewer",
+    "fingerprint": "73340ddb44c504c38816f773b0b64ba02105f65c1a20a27b7f3a78c88ea926e2"
+  }
+}

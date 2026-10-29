@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "header_hash": "1ec28cdb9372d384499e55ff5fe7ec4e9729d412e867d1089f9286d74ed549f4",
+  "mappings": [
+    {
+      "source": "reading_key",
+      "target": "event_id",
+      "transform": "text"
+    },
+    {
+      "source": "sensor_key",
+      "target": "device_id",
+      "transform": "text"
+    },
+    {
+      "source": "collected_at",
+      "target": "observed_at",
+      "transform": "iso8601"
+    },
+    {
+      "source": "temp_f",
+      "target": "temperature_c",
+      "transform": "fahrenheit_to_celsius"
+    },
+    {
+      "source": "health",
+      "target": "status",
+      "transform": "status"
+    }
+  ],
+  "origin": "deterministic-header-policy",
+  "issues": [],
+  "fingerprint": "73340ddb44c504c38816f773b0b64ba02105f65c1a20a27b7f3a78c88ea926e2",
+  "evidence": {
+    "headers": [
+      "reading_key",
+      "sensor_key",
+      "collected_at",
+      "temp_f",
+      "health"
+    ],
+    "header_hash": "1ec28cdb9372d384499e55ff5fe7ec4e9729d412e867d1089f9286d74ed549f4",
+    "row_count": 6,
+    "columns": {
+      "reading_key": {
+        "nonempty": 6,
+        "distinct": 5,
+        "examples": [
+          "DEMO-E001",
+          "DEMO-E002",
+          "DEMO-E003"
+        ]
+      },
+      "sensor_key": {
+        "nonempty": 6,
+        "distinct": 5,
+        "examples": [
+          "DEMO-S001",
+          "DEMO-S002",
+          "DEMO-S003"
+        ]
+      },
+      "collected_at": {
+        "nonempty": 6,
+        "distinct": 5,
+        "examples": [
+          "2030-01-01T12:00:00Z",
+          "2030-01-01T12:01:00Z",
+          "2030-01-01T12:02:00Z"
+        ]
+      },
+      "temp_f": {
+        "nonempty": 6,
+        "distinct": 4,
+        "examples": [
+          "68",
+          "77",
+          "not-a-number"
+        ]
+      },
+      "health": {
+        "nonempty": 6,
+        "distinct": 4,
+        "examples": [
+          "healthy",
+          "warn",
+          "ok"
+        ]
+      }
+    }
+  }
+}
