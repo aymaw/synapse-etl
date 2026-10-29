@@ -1,0 +1,11 @@
+flowchart LR
+  C[Synthetic CSV] --> P[Bounded profiler]
+  P --> M[Policy or model mapping]
+  M --> R[Transform review]
+  R --> V[Schema and row validator]
+  V --> A[(Canonical events)]
+  V --> Q[(Quarantine reasons)]
+  A --> T[Atomic batch receipt]
+  Q --> T
+  T --> L[Row lineage and replay]
+  L --> E[Run explorer]
